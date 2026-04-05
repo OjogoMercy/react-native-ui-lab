@@ -81,7 +81,7 @@ export default function Index() {
   const scrollX = React.useRef(new Animated.Value(0)).current;
   const spacerWidth = (SCREEN_WIDTH - SCREEN_WIDTH * 0.65) / 2;
   const dataWithSpacers = [{ key: "left" }, ...database, { key: "right" }];
-  function isSpacer(item: ListItem): item is Destination {
+  function isSpacer(item: { key: string }): item is Destination {
     return "poster" in item;
   }
 
@@ -157,7 +157,11 @@ export default function Index() {
           width: SCREEN_WIDTH,
         }}
       >
-        <PrimaryButton title="Explore" style={{ width: SCREEN_WIDTH * 0.9 }} />
+        <PrimaryButton
+          title="Explore"
+          style={{ width: SCREEN_WIDTH * 0.9 }}
+          onPress={undefined}
+        />
       </View>
     </View>
   );
