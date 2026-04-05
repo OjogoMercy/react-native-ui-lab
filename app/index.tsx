@@ -1,10 +1,12 @@
-import { Text, View, StyleSheet } from "react-native";
+import WrapView from "@/components/WrapView";
+import { ThemedText } from "@/constants/ThemedText";
+import { StyleSheet } from "react-native";
 
 export default function Index() {
   return (
-    <View style={styles.container}>
-      <Text>Edit src/app/index.tsx to edit this screen.</Text>
-    </View>
+    <WrapView>
+      <ThemedText>Hello Mercy</ThemedText>
+    </WrapView>
   );
 }
 
