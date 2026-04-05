@@ -2,7 +2,6 @@ import React from "react";
 import { StatusBar, StyleSheet, View } from "react-native";
 import { COLORS, SIZES } from "../constants/THEME";
 
-
 interface WrapViewProps {
   children: React.ReactNode;
   title: string;
@@ -10,7 +9,6 @@ interface WrapViewProps {
   headerStyle?: object;
 }
 const WrapView = ({ children }: WrapViewProps) => {
-
   return (
     <View style={[styles.container]}>
       <StatusBar
@@ -27,6 +25,11 @@ const WrapView = ({ children }: WrapViewProps) => {
 export default WrapView;
 
 const styles = StyleSheet.create({
-  container: { flex: 1, alignItems: "center", backgroundColor:COLORS.white,justifyContent:'center', padding:SIZES.padding },
- 
+  container: {
+    flex: 1,
+    alignItems: "center",
+    backgroundColor: COLORS.background,
+    justifyContent: "center",
+    padding: SIZES.padding,
+  },
 });

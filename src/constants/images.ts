@@ -1,13 +1,13 @@
-import { ImageSourcePropType } from "react-native";
-
-export const images = {
-  icon: require("../assets/images/icon.png"),
-  logo: require("../assets/images/logo.png"),
-  mamaIntro: require("../assets/images/mamaIntro.png"),
-  slide3: require("../assets/images/slide3.png"),
-  slide4: require("../assets/images/slide4.png"),
-  slide5: require("../assets/images/slide5.png"),
-  slide6: require("../assets/images/slide6.png"),
-  splashIcon: require("../assets/images/splash-icon.png"),
-  slide2: require("../assets/images/slide2.png"),
+const images = {
+  thailand: require("../assets/images/thailand.jpg"),
+  nigeria: require("../assets/images/nigeria.jpg"),
+  scotland: require("../assets/images/scotland.jpg"),
+  nairobi: require("../assets/images/nairobi.jpg"),
+  australia: require("../assets/images/australia.jpg"),
+  china: require("../assets/images/china.jpg"),
+  japan: require("../assets/images/japan.jpg"),
+  france: require("../assets/images/france.jpg"),
+  london: require("../assets/images/london.jpg"),
 };
+
+export default images;
