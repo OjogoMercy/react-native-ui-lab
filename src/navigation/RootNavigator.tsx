@@ -1,0 +1,35 @@
+import React from 'react';
+import { NavigationContainer, NavigationIndependentTree } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import AuthNavigator from './AuthNavigator';
+import BottomTabNavigator from './BottomTabNavigator';
+import SplashScreen from '../screens/IntroSlider/SplashScreen';
+import FirstScreen from '../screens/IntroSlider/FirstScreen';
+
+export type RootStackParamList = {
+  Splash: undefined;
+  Auth: undefined;
+  Main: undefined;
+  FirstScreen:undefined
+
+};
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
+
+
+export default function RootNavigator() {
+
+  return (
+    <NavigationIndependentTree>
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{ headerShown: false, animation:'slide_from_right'}} initialRouteName='Splash'>       
+          <Stack.Screen name="Main" component={BottomTabNavigator} />
+        <Stack.Screen name="Auth" component={AuthNavigator} />
+        <Stack.Screen name="Splash" component={SplashScreen} />
+        <Stack.Screen name="FirstScreen" component={FirstScreen} />
+    
+      </Stack.Navigator>
+    </NavigationContainer>
+    </NavigationIndependentTree>
+  );
+}
