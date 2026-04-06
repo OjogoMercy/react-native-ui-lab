@@ -25,7 +25,7 @@ const BackdropItem = ({
   scrollX: SharedValue<number>;
 }) => {
   const CARD_WIDTH = SCREEN_WIDTH * 0.65;
-  const BACKDROP_HEIGHT = SCREEN_HEIGHT * 0.65;
+  const BACKDROP_HEIGHT = SCREEN_HEIGHT * 0.75;
 
   const maskAnimatedStyle = useAnimatedStyle(() => {
     const opacity = interpolate(
@@ -74,14 +74,13 @@ const BackdropItem = ({
         style={{
           position: "absolute",
           width: SCREEN_WIDTH,
-          height: BACKDROP_HEIGHT * 0.4,
+          height: BACKDROP_HEIGHT * 0.35,
           bottom: 0,
         }}
       />
     </MaskedView>
   );
 };
-
 const Backdrop = ({ scrollX }: { scrollX: SharedValue<number> }) => {
   return (
     <View style={styles.backdrop}>
@@ -97,6 +96,55 @@ const Backdrop = ({ scrollX }: { scrollX: SharedValue<number> }) => {
     </View>
   );
 };
+const CardItem = ({
+  item,
+  index,
+  scrollX,
+}: {
+  item: Destination;
+  index: number;
+  scrollX: SharedValue<number>;
+}) => {
+  const adjustedIndex = index - 1;
+  const CARD_WIDTH = SCREEN_WIDTH * 0.65;
+
+  const animatedStyle = useAnimatedStyle(() => {
+    const translateY = interpolate(
+      scrollX.value,
+      [
+        (adjustedIndex - 1) * CARD_WIDTH,
+        adjustedIndex * CARD_WIDTH,
+        (adjustedIndex + 1) * CARD_WIDTH,
+      ],
+      [100, 50, 100],
+      Extrapolation.CLAMP,
+    );
+    return { transform: [{ translateY }] };
+  });
+
+  return (
+    <Animated.View style={[styles.card, animatedStyle]}>
+      <View
+        style={{
+          alignItems: "center",
+          justifyContent: "center",
+          borderRadius: SIZES.h2,
+          height: "90%",
+          width: "90%",
+          backgroundColor: "white",
+        }}
+      >
+        <Image source={item.poster} style={styles.poster} />
+        <ThemedText type="text3bold" style={{ fontWeight: "bold" }}>
+          {item.title}
+        </ThemedText>
+        <ThemedText type="text5" style={{ textAlign: "center" }}>
+          {item.description}
+        </ThemedText>
+      </View>
+    </Animated.View>
+  );
+};
 export default function Index() {
   const scrollX = useSharedValue(0);
   const spacerWidth = (SCREEN_WIDTH - SCREEN_WIDTH * 0.65) / 2;
@@ -107,7 +155,51 @@ export default function Index() {
   const scrollHandler = useAnimatedScrollHandler((event) => {
     scrollX.value = event.contentOffset.x;
   });
-
+  const CARD_WIDTH = SCREEN_WIDTH * 0.65;
+  const PaginationDots = ({ scrollX }: { scrollX: SharedValue<number> }) => {
+    return (
+      <View style={{ flexDirection: "row", gap: 6, justifyContent: "center" }}>
+        {database.map((_, index) => {
+          const animatedStyle = useAnimatedStyle(() => {
+            const width = interpolate(
+              scrollX.value,
+              [
+                (index - 1) * CARD_WIDTH,
+                index * CARD_WIDTH,
+                (index + 1) * CARD_WIDTH,
+              ],
+              [6, 20, 6],
+              Extrapolation.CLAMP,
+            );
+            const opacity = interpolate(
+              scrollX.value,
+              [
+                (index - 1) * CARD_WIDTH,
+                index * CARD_WIDTH,
+                (index + 1) * CARD_WIDTH,
+              ],
+              [0.4, 1, 0.4],
+              Extrapolation.CLAMP,
+            );
+            return { width, opacity };
+          });
+          return (
+            <Animated.View
+              key={index}
+              style={[
+                {
+                  height: 8,
+                  borderRadius: 4,
+                  backgroundColor: COLORS.primary,
+                },
+                animatedStyle,
+              ]}
+            />
+          );
+        })}
+      </View>
+    );
+  };
   return (
     <View style={{ flex: 1, backgroundColor: COLORS.white }}>
       <StatusBar
@@ -117,6 +209,7 @@ export default function Index() {
       />
 
       <Backdrop scrollX={scrollX} />
+
       <Animated.FlatList
         data={dataWithSpacers}
         horizontal
@@ -133,53 +226,18 @@ export default function Index() {
           if (!isSpacer(item)) {
             return <View style={{ width: spacerWidth }} />;
           }
-          const adjustedIndex = index - 1;
-          const cardWidth = SCREEN_WIDTH * 0.65;
-          const inputRange = [
-            (adjustedIndex - 1) * cardWidth,
-            adjustedIndex * cardWidth,
-            (adjustedIndex + 1) * cardWidth,
-          ];
-          const animatedStyle = useAnimatedStyle(() => {
-            const translateY = interpolate(
-              scrollX.value,
-              inputRange,
-              [100, 50, 100],
-              Extrapolation.CLAMP,
-            );
-            return {
-              transform: [{ translateY }],
-            };
-          });
-
-          return (
-            <Animated.View style={[styles.card, animatedStyle]}>
-              <View
-                style={{
-                  alignItems: "center",
-                  justifyContent: "center",
-                  borderRadius: SIZES.h1,
-                  height: "90%",
-                  width: "90%",
-                  backgroundColor: "white",
-                }}
-              >
-                <Image source={item.poster} style={styles.poster} />
-                <ThemedText type="text3bold">{item.title}</ThemedText>
-                <ThemedText type="text5" style={{ textAlign: "center" }}>
-                  {item.description}
-                </ThemedText>
-              </View>
-            </Animated.View>
-          );
+          return <CardItem item={item} index={index} scrollX={scrollX} />;
         }}
       />
+      <PaginationDots scrollX={scrollX} />
+
       <View
         style={{
           alignItems: "center",
           marginTop: SIZES.h3,
           padding: SIZES.h2,
           width: SCREEN_WIDTH,
+          overflow: "hidden",
         }}
       >
         <PrimaryButton
@@ -205,11 +263,12 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.15,
     shadowRadius: 20,
     elevation: 10,
+    overflow: "hidden",
   },
   poster: {
     height: "67%",
     width: "90%",
-    borderRadius: SIZES.h1,
+    borderRadius: SIZES.h2 / 1.2,
     marginBottom: SIZES.h5,
     resizeMode: "cover",
   },

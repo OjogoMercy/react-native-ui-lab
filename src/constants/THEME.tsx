@@ -1,49 +1,49 @@
-import { Dimensions,  } from 'react-native'
-const { width, height } = Dimensions.get('window')
+import { Dimensions } from "react-native";
+const { width, height } = Dimensions.get("window");
 
 // const screenWidth = Math.round(Dimensions.get('window').width)
-const screenHeight = Math.round(Dimensions.get('window').height)
+const screenHeight = Math.round(Dimensions.get("window").height);
 
-export const SCREEN_HEIGHT = Dimensions.get('window').height
-export const SCREEN_WIDTH = Dimensions.get('window').width
+export const SCREEN_HEIGHT = Dimensions.get("window").height;
+export const SCREEN_WIDTH = Dimensions.get("window").width;
 
 export const FontStyles = {
-  ABCItalic: 'ABeeZee-Italic',
-  ABCRegular: 'ABeeZee-Regular',
-  ComicSans: 'Comic Sans MS',
-  heading: 'Inter_700Bold',
-    body: 'SourceSans3_400Regular',
-    numeric: 'SpaceMono_400Regular',
-}
+  ABCItalic: "ABeeZee-Italic",
+  ABCRegular: "ABeeZee-Regular",
+  ComicSans: "Comic Sans MS",
+  heading: "Inter_700Bold",
+  body: "SourceSans3_400Regular",
+  numeric: "SpaceMono_400Regular",
+};
 
 export const COLORS = {
-  primary: '#F59E0B',
-  primary2:"#F4EDDC",
-  secondary: '#E4D1A6',
-  lightGreen: 'rgba(247, 253, 250, 1)',
-  lightGreen2: 'rgba(229, 249, 227, 1)',
-  alert:"#D32F2F",
-  black: 'rgba(0, 0, 0, 1)',
-  white: 'rgba(255, 255, 255, 1)',
-  gray: '#747674',
-  gray2: '#ccc',
-  gray3: '#323F4B',
-  gray4: 'rgba(33, 33, 33, 0.08)',
- 
-  inputContainer: '#EBDFFA',
-  formBg: '#EBDFFA33',
-  inputText: '#2E14219E',
-  orange: '#FFAF42',
-  accent: '#FFA726', 
-  veryLightGray: '#cccccc1a',
-  lightPurple: '#F0EFFF',
-  overlay: '#cccccc1a',
-  opacity: 'rgba(0, 0, 0, 0.2)',
-  promptInput: '#FFE8B2',
-  promptBackground: '#FFF6E0',
-  background:"#F9FAFB",
-  mutedText:"#6B7280"
-}
+  primary: "#1709db",
+  primary2: "#F4EDDC",
+  secondary: "#E4D1A6",
+  lightGreen: "rgba(247, 253, 250, 1)",
+  lightGreen2: "rgba(229, 249, 227, 1)",
+  alert: "#D32F2F",
+  black: "rgba(0, 0, 0, 1)",
+  white: "rgba(255, 255, 255, 1)",
+  gray: "#747674",
+  gray2: "#ccc",
+  gray3: "#323F4B",
+  gray4: "rgba(33, 33, 33, 0.08)",
+
+  inputContainer: "#EBDFFA",
+  formBg: "#EBDFFA33",
+  inputText: "#2E14219E",
+  orange: "#FFAF42",
+  accent: "#FFA726",
+  veryLightGray: "#cccccc1a",
+  lightPurple: "#F0EFFF",
+  overlay: "#cccccc1a",
+  opacity: "rgba(0, 0, 0, 0.2)",
+  promptInput: "#FFE8B2",
+  promptBackground: "#FFF6E0",
+  background: "#F9FAFB",
+  mutedText: "#6B7280",
+};
 
 export const SIZES = {
   //global sizes
@@ -70,17 +70,17 @@ export const SIZES = {
   // app dimensions
   width,
   height,
-}
+};
 
 export const FONTS = {
-  navTitle: { fontFamily: 'AeonikTRIAL-Bold', fontSize: SIZES.navTitle },
+  navTitle: { fontFamily: "AeonikTRIAL-Bold", fontSize: SIZES.navTitle },
   largeTitleBold: {
-    fontFamily: 'AeonikTRIAL-Bold',
+    fontFamily: "AeonikTRIAL-Bold",
     fontSize: SIZES.h1 * 1.5,
     lineHeight: screenHeight * 0.05,
   },
   h1: {
-    fontFamily: 'Poppins-Medium',
+    fontFamily: "Poppins-Medium",
     fontSize: SIZES.h1,
     lineHeight: screenHeight * 0.05,
   },
@@ -113,7 +113,7 @@ export const FONTS = {
     fontFamily: FontStyles.body,
     fontSize: SIZES.h4,
     lineHeight: screenHeight * 0.025,
-    fontWeight:'200'
+    fontWeight: "200",
   },
   h4bold: {
     fontFamily: FontStyles.body,
@@ -131,12 +131,12 @@ export const FONTS = {
     lineHeight: screenHeight * 0.025,
   },
   h6: {
-    fontFamily: 'Poppins-Medium',
+    fontFamily: "Poppins-Medium",
     fontSize: SIZES.h6,
     lineHeight: screenHeight * 0.025,
   },
   h6bold: {
-    fontFamily: 'Poppins-Bold',
+    fontFamily: "Poppins-Bold",
     fontSize: SIZES.h6,
     lineHeight: screenHeight * 0.025,
   },
@@ -151,32 +151,32 @@ export const FONTS = {
     lineHeight: 30,
   },
   body2a: {
-    fontFamily: 'AeonikTRIAL-Bold',
+    fontFamily: "AeonikTRIAL-Bold",
     fontSize: SIZES.body2,
     lineHeight: 30,
   },
   body3: {
-    fontFamily: 'Raleway-VariableFont_wght',
+    fontFamily: "Raleway-VariableFont_wght",
     fontSize: SIZES.body3,
     lineHeight: 22,
   },
   body3a: {
-    fontFamily: 'AeonikTRIAL-Bold',
+    fontFamily: "AeonikTRIAL-Bold",
     fontSize: SIZES.body3,
     lineHeight: 22,
   },
   body4: {
-    fontFamily: 'Raleway-VariableFont_wght',
+    fontFamily: "Raleway-VariableFont_wght",
     fontSize: SIZES.body4,
     lineHeight: 22,
   },
   body5: {
-    fontFamily: 'Raleway-VariableFont_wght',
+    fontFamily: "Raleway-VariableFont_wght",
     fontSize: SIZES.body5,
     lineHeight: 22,
   },
-}
+};
 
-const appTheme = { COLORS, SIZES, FONTS, SCREEN_HEIGHT, SCREEN_WIDTH }
+const appTheme = { COLORS, SIZES, FONTS, SCREEN_HEIGHT, SCREEN_WIDTH };
 
-export default appTheme
+export default appTheme;

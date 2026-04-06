@@ -61,16 +61,7 @@ const database: Destination[] = [
     description:
       "From the Great Barrier Reef to the vast Outback and golden beaches, Australia offers an endless playground for the curious traveller.",
   },
-  {
-    key: "china",
-    title: "China",
-    poster: images.china,
-    backdrop: images.china,
-    rating: 4.7,
-    genres: ["History", "Culture", "Scenic"],
-    description:
-      "A civilisation spanning thousands of years — the Great Wall, ancient temples, modern megacities, and breathtaking mountain landscapes all in one country.",
-  },
+
   {
     key: "japan",
     title: "Japan",
@@ -80,26 +71,6 @@ const database: Destination[] = [
     genres: ["Culture", "Food", "Scenic"],
     description:
       "Where ancient tradition meets cutting-edge modernity. Cherry blossoms, bullet trains, ramen alleys, and peaceful shrines await in Japan.",
-  },
-  {
-    key: "france",
-    title: "France",
-    poster: images.france,
-    backdrop: images.france,
-    rating: 4.8,
-    genres: ["Romance", "Art", "Food"],
-    description:
-      "The Eiffel Tower, Loire Valley châteaux, world-class cuisine, and the French Riviera — France is the benchmark of art, culture, and elegance.",
-  },
-  {
-    key: "london",
-    title: "London",
-    poster: images.london,
-    backdrop: images.london,
-    rating: 4.6,
-    genres: ["History", "Urban", "Culture"],
-    description:
-      "A city that never stands still. From the Thames and Tower Bridge to world-class museums and a buzzing food scene, London has something for everyone.",
   },
 ];
 
