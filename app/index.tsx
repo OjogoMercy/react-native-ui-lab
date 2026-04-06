@@ -2,10 +2,18 @@ import PrimaryButton from "@/components/PrimaryButton";
 import database, { Destination } from "@/constants/Database";
 import { COLORS, SCREEN_HEIGHT, SCREEN_WIDTH, SIZES } from "@/constants/THEME";
 import { ThemedText } from "@/constants/ThemedText";
+import { Ionicons } from "@expo/vector-icons";
 import MaskedView from "@react-native-masked-view/masked-view";
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
-import { FlatList, Image, StatusBar, StyleSheet, View } from "react-native";
+import {
+  FlatList,
+  Image,
+  StatusBar,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import Animated, {
   Extrapolation,
   interpolate,
@@ -25,7 +33,7 @@ const BackdropItem = ({
   scrollX: SharedValue<number>;
 }) => {
   const CARD_WIDTH = SCREEN_WIDTH * 0.65;
-  const BACKDROP_HEIGHT = SCREEN_HEIGHT * 0.75;
+  const BACKDROP_HEIGHT = SCREEN_HEIGHT * 0.7;
 
   const maskAnimatedStyle = useAnimatedStyle(() => {
     const opacity = interpolate(
@@ -74,7 +82,7 @@ const BackdropItem = ({
         style={{
           position: "absolute",
           width: SCREEN_WIDTH,
-          height: BACKDROP_HEIGHT * 0.35,
+          height: BACKDROP_HEIGHT * 0.4,
           bottom: 0,
         }}
       />
@@ -135,12 +143,24 @@ const CardItem = ({
         }}
       >
         <Image source={item.poster} style={styles.poster} />
-        <ThemedText type="text3bold" style={{ fontWeight: "bold" }}>
+        <ThemedText type="text2bold" style={{ fontWeight: "bold" }}>
           {item.title}
         </ThemedText>
-        <ThemedText type="text5" style={{ textAlign: "center" }}>
-          {item.description}
-        </ThemedText>
+
+        <ThemedText style={{ textAlign: "center" }}>{item.tagline}</ThemedText>
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            gap: 4,
+            marginTop: SIZES.h6 / 2,
+          }}
+        >
+          <Ionicons name="calendar" size={14} color={COLORS.gray} />
+          <ThemedText type="text4bold" style={{ color: "gray" }}>
+            Best time: "March – May"
+          </ThemedText>
+        </View>
       </View>
     </Animated.View>
   );
@@ -209,7 +229,22 @@ export default function Index() {
       />
 
       <Backdrop scrollX={scrollX} />
-
+      <TouchableOpacity
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          gap: 4,
+          backgroundColor: "white",
+          padding: SIZES.base / 2,
+          zIndex: 1,
+          borderRadius: SIZES.base,
+          position: "absolute",
+          top: StatusBar.currentHeight ? StatusBar.currentHeight + 10 : 40,
+          right: 20,
+        }}
+      >
+        <Ionicons name="location-sharp" size={18} color={COLORS.primary} />
+      </TouchableOpacity>
       <Animated.FlatList
         data={dataWithSpacers}
         horizontal
